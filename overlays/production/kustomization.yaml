@@ -5,7 +5,7 @@ resources:
   - ../../base
 images:
   - name: tanpiyangkoon/it-request
-    newTag: production-216b9a607a4-27
+    newTag: production-216b9a607a4-28
 replicas:
   - name: it-request
     count: 2
