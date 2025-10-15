@@ -16,10 +16,12 @@ spec:
       - name: it-request
         image: tanpiyangkoon/it-request:latest
         ports:
-        - containerPort: 8080
-        env:
-        - name: ENV
-          value: "production"
+        - containerPort: 3001
+          name: http
+        
+        # Base ไม่ต้องมี env, health checks
+        # ให้ overlay เพิ่มเข้ามาทีหลัง
+        
         resources:
           requests:
             memory: "128Mi"

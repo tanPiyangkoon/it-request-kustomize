@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: it-request-config
+  namespace: default
+data:
+  # Database Configuration
+  DB_HOST: "db"
+  PGHOST: "db"
+  PGDATABASE: "it_request_db"
+  DB_PORT: "5432"
+  PGPORT: "5432"
+  
+  # Application Configuration
+  NODE_ENV: "production"
+  PORT: "3001"
