@@ -1,12 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 bases:
   - ../../base
-
 patchesStrategicMerge:
   - deployment.yaml
-
 images:
   - name: tanpiyangkoon/it-request
-    newTag: latest
+    newTag: production-216b9a607a4-24
