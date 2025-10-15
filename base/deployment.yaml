@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: it-request
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: it-request
+  template:
+    metadata:
+      labels:
+        app: it-request
+    spec:
+      containers:
+      - name: it-request
+        image: tanpiyangkoon/it-request
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENV
+          value: "development"
