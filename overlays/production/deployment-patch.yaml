@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: it-request
 spec:
-  replicas: 2  # Production ใช้ 2 replicas (base มีแค่ 1)
+  replicas: 1  # Production ใช้ 2 replicas (base มีแค่ 1)
   template:
     spec:
       # เพิ่ม init container (base ไม่มี)
