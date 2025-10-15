@@ -6,4 +6,4 @@ patchesStrategicMerge:
   - deployment.yaml
 images:
   - name: tanpiyangkoon/it-request
-    newTag: production-216b9a607a4-24
+    newTag: production-216b9a607a4-25
