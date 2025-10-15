@@ -1,11 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: it-request-service
+  name: it-request
+  labels:
+    app: it-request
 spec:
   selector:
     app: it-request
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 3000
+    protocol: TCP
+    name: http
   type: ClusterIP

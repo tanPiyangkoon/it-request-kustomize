@@ -14,9 +14,16 @@ spec:
     spec:
       containers:
       - name: it-request
-        image: tanpiyangkoon/it-request
+        image: tanpiyangkoon/it-request:latest
         ports:
         - containerPort: 8080
         env:
         - name: ENV
-          value: "development"
+          value: "production"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
