@@ -14,4 +14,4 @@ patchesStrategicMerge:
 # Jenkins จะมา update tag นี้
 images:
   - name: tanpiyangkoon/it-request
-    newTag: production-9a7d9ce75a6-34
+    newTag: production-5cede4f5455-35
