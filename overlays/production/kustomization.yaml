@@ -10,6 +10,7 @@ resources:
 patches:
   - path: deployment-patch.yaml
 # Jenkins จะมา update tag นี้
+# FIXME: Jenkins builds nginx instead of Node.js app for production-* tags
 images:
   - name: tanpiyangkoon/it-request
-    newTag: production-a047c4d83ef-37
+    newTag: latest
