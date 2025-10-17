@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: it-request
+  name: it-request-backend
 spec:
   replicas: 1  # Production ใช้ 2 replicas (base มีแค่ 1)
   template:
@@ -22,7 +22,7 @@ spec:
           echo "Database is ready!"
       
       containers:
-      - name: it-request
+      - name: backend
         # เพิ่ม environment variables (base ไม่มี)
         envFrom:
         - configMapRef:

@@ -12,5 +12,5 @@ patches:
 # Jenkins จะมา update tag นี้
 # FIXME: Jenkins builds nginx instead of Node.js app for production-* tags
 images:
-  - name: tanpiyangkoon/it-request
+  - name: tanpiyangkoon/it-request-backend
     newTag: production-a047c4d83ef-39

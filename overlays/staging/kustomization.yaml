@@ -4,9 +4,6 @@ kind: Kustomization
 resources:
   - ../../base
 
-patches:
-  - path: deployment.yaml
-
 images:
-  - name: tanpiyangkoon/it-request
+  - name: tanpiyangkoon/it-request-backend
     newTag: latest
