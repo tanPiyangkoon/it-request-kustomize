@@ -1,31 +1,66 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: it-request
+  name: it-request-backend
+  namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: it-request
+      app: it-request-backend
   template:
     metadata:
       labels:
-        app: it-request
+        app: it-request-backend
     spec:
+      initContainers:
+      - name: wait-for-db
+        image: busybox:1.35
+        command: ['sh', '-c', 'until nc -z db 5432; do sleep 2; done']
       containers:
-      - name: it-request
-        image: tanpiyangkoon/it-request:latest
+      - name: backend
+        image: tanpiyangkoon/it-request-backend:latest  # ต้อง build & push ก่อน
         ports:
         - containerPort: 3001
           name: http
-        
-        # Base ไม่ต้องมี env, health checks
-        # ให้ overlay เพิ่มเข้ามาทีหลัง
-        
+        envFrom:
+        - configMapRef:
+            name: it-request-config
+        - secretRef:
+            name: it-request-secret
+        livenessProbe:
+          httpGet:
+            path: /health  # หรือ endpoint ที่ backend support
+            port: 3001
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3001
+          initialDelaySeconds: 30
+          periodSeconds: 5
         resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+        volumeMounts:
+        - name: uploads
+          mountPath: /app/uploads
+      volumes:
+      - name: uploads
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: it-request-backend-service
+spec:
+  selector:
+    app: it-request-backend
+  ports:
+  - port: 3001
+    targetPort: 3001
