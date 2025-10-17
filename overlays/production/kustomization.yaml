@@ -12,4 +12,4 @@ patches:
 # Jenkins จะมา update tag นี้
 images:
   - name: tanpiyangkoon/it-request
-    newTag: production-a047c4d83ef-37
+    newTag: production-a047c4d83ef-38
