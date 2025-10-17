@@ -1,16 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
-# ⭐ ชี้ไปที่ base
-bases:
-  - ../../base
-# เพิ่ม resources ที่เฉพาะ production
+
+# ⭐ ชี้ไปที่ base (เปลี่ยนจาก bases เป็น resources)
 resources:
+  - ../../base
   - configmap.yaml
   - secret.yaml
+
 # ⭐ ใช้ patch ปรับแต่ง deployment จาก base
-patchesStrategicMerge:
-  - deployment-patch.yaml
+patches:
+  - path: deployment-patch.yaml
+
 # Jenkins จะมา update tag นี้
 images:
   - name: tanpiyangkoon/it-request
