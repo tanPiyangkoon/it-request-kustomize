@@ -17,4 +17,4 @@ resources:
   - ../../base
 images:
   - name: tanpiyangkoon/it-request
-    newTag: production-3c7a6ce22d3-52
+    newTag: production-a732ad550c3-53
