@@ -1,25 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 replicas:
-- name: it-request  
-  count: 1
-
+  - name: it-request
+    count: 1
 labels:
-- includeSelectors: true
-  pairs:
-    app: it-request
-
+  - includeSelectors: true
+    pairs:
+      app: it-request
 configMapGenerator:
   - behavior: replace
     envs:
       - .env
     name: it-request-config
-    namespace: production 
-
+    namespace: production
 resources:
   - ../../base
-
 images:
   - name: tanpiyangkoon/it-request
     newTag: production-4337e740677-45
