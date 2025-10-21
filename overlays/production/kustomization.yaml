@@ -13,4 +13,4 @@ patches:
 # FIXME: Jenkins builds nginx instead of Node.js app for production-* tags
 images:
   - name: tanpiyangkoon/it-request-backend
-    newTag: production-595f2dd289e-44
+    newTag: production-4337e740677-45
