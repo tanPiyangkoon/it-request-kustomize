@@ -1,26 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: it-request-backend
+  name: it-request
 spec:
   replicas: 1  # Production ใช้ 2 replicas (base มีแค่ 1)
   template:
     spec:
-      # เพิ่ม init container (base ไม่มี)
-      initContainers:
-      - name: wait-for-db 
-        image: busybox:1.35
-        command: 
-        - sh  
-        - -c
-        - | 
-          echo "Waiting for database to be ready..."
-          until nc -z db 5432; do
-            echo "Database is unavailable - sleeping"
-            sleep 2
-          done 
-          echo "Database is ready!"
-      
       containers:
       - name: backend
         # เพิ่ม environment variables (base ไม่มี)
@@ -29,7 +14,6 @@ spec:
             name: it-request-config
         - secretRef:
             name: it-request-secret
-        
         # เพิ่ม health checks (base ไม่มี)
         livenessProbe:
           httpGet:

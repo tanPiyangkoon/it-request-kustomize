@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: it-request-config
-  namespace: default
+  namespace: production
 data:
   # Database Configuration
   DB_HOST: "db"
@@ -14,3 +14,4 @@ data:
   # Application Configuration
   NODE_ENV: "production"
   PORT: "3001"
+  

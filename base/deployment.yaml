@@ -1,25 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: it-request-backend
-  namespace: default
+  name: it-request
+  namespace: production
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: it-request-backend
+      app: it-request
   template:
     metadata:
       labels:
-        app: it-request-backend
+        app: it-request
     spec:
-      initContainers:
-      - name: wait-for-db
-        image: busybox:1.35
-        command: ['sh', '-c', 'until nc -z db 5432; do sleep 2; done']
       containers:
-      - name: backend
-        image: tanpiyangkoon/it-request-backend:latest  # ต้อง build & push ก่อน
+      - name: it-request
+        image: tanpiyangkoon/it-request  
         ports:
         - containerPort: 3001
           name: http
