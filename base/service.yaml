@@ -1,13 +1,14 @@
-apiVersion: v1
-kind: Service
+apiVersion: "v1"
+kind: "Service"
 metadata:
-  name: it-request-service
+  name: "it-request"
+  namespace: "production"
 spec:
   selector:
-    app: it-request
+    app: "it-request"
   ports:
-  - protocol: TCP
-    port: 3000
+  - protocol: "TCP"
+    port: 3001
     targetPort: 3001
-    name: http
-  type: ClusterIP
+    name: "http"
+  type: "ClusterIP"

@@ -1,16 +1,25 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: default
-# ⭐ ชี้ไปที่ base (เปลี่ยนจาก bases เป็น resources)
+
+replicas:
+- name: it-request  
+  count: 1
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: it-request
+
+configMapGenerator:
+  - behavior: replace
+    envs:
+      - .env
+    name: it-request-config
+    namespace: production 
+
 resources:
   - ../../base
-  - configmap.yaml
-  - secret.yaml
-# ⭐ ใช้ patch ปรับแต่ง deployment จาก base
-patches:
-  - path: deployment-patch.yaml
-# Jenkins จะมา update tag นี้
-# FIXME: Jenkins builds nginx instead of Node.js app for production-* tags
+
 images:
-  - name: tanpiyangkoon/it-request-backend
+  - name: tanpiyangkoon/it-request
     newTag: production-4337e740677-45
