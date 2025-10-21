@@ -1,14 +1,33 @@
-apiVersion: "v1"
-kind: "Service"
+# apiVersion: "v1"
+# kind: "Service"
+# metadata:
+#   name: "it-request"
+#   namespace: "production"
+# spec:
+#   selector:
+#     app: "it-request"
+#   ports:
+#   - protocol: "TCP"
+#     port: 80
+#     targetPort: 80
+#     name: "http"
+#   type: "ClusterIP"
+
+
+
+
+apiVersion: v1
+kind: Service
 metadata:
-  name: "it-request"
-  namespace: "production"
+  name: it-request
+  namespace: production
 spec:
   selector:
-    app: "it-request"
+    app: it-request
   ports:
-  - protocol: "TCP"
-    port: 80
-    targetPort: 80
-    name: "http"
-  type: "ClusterIP"
+    - name: http
+      protocol: TCP
+      port: 80          # พอร์ตของ Service ภายในคลัสเตอร์
+      targetPort: 80    # พอร์ตของ container (NGINX)
+      nodePort: 30080   # พอร์ตภายนอก (ให้เข้าได้จาก LAN)
+  type: NodePort        # 👈 เปลี่ยนจาก ClusterIP เป็น NodePort
