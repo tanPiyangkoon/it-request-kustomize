@@ -24,7 +24,7 @@ spec:
             cpu: 100m
             memory: 256Mi
         envFrom:
-          - configMapRef:
-              name: it-request-config
+          - secretRef:
+              name: it-request-secret
 
     

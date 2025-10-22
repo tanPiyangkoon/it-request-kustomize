@@ -7,11 +7,10 @@ labels:
   - includeSelectors: true
     pairs:
       app: it-request
-configMapGenerator:
-  - behavior: replace
-    envs:
+secretGenerator:
+  - envs:
       - .env
-    name: it-request-config
+    name: it-request-secret
     namespace: production
 resources:
   - ../../base
