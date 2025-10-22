@@ -5,9 +5,9 @@ metadata:
   namespace: production
 spec:
   selector:
-    app: it-request  # ปรับตาม label ของ Pod
+    app: it-request  
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80  # พอร์ตที่ Pod ฟัง
+    targetPort: 80  
   type: ClusterIP
