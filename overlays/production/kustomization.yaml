@@ -16,4 +16,4 @@ resources:
   - ../../base
 images:
   - name: tanpiyangkoon/it-request
-    newTag: ""
+    newTag: "a8cb675"
